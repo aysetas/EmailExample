@@ -72,15 +72,15 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $to_name='Antep Bootcamp';
+        $to_name= $data['name'];
         $to_email = $data['email'];
-        $to_name = $data['name'];
+
         $body = [];
-        $mail_data = array(['body'=>$body]);
-        Mail::send(['register-email'] , $mail_data
+        $mail_data = array(['body'=>$body] , 'name'=>$to_name);
+        Mail::send('email.register-email' , $mail_data
         ,function($msg) use ($to_name,$to_email){
-            $msg->to($to_email,$to_name)->subject('Welcome');
-            $msg->from(env('MAIL_USERNAME'),'Admin');
+            $msg->to($to_email,$to_name)->subject('HOŞGELDİNİZ!!');
+            $msg->from(env('MAIL_USERNAME'),'Beni Sahiplen');
         });
 
         return $user;

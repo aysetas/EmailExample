@@ -1,11 +1,10 @@
 <?php
 
-use Carbon\Traits\Timestamp;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNotificationsTable extends Migration
+class CreateEmailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,15 +13,11 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('emails', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('name');
-            $table->date('endDate');
-            $table->timestamps();
-
-
-
-
+            $table->string('photo' ,180)->nullable();
+            $table->string('created_by');
         });
     }
 
@@ -33,6 +28,6 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifications');
+        Schema::dropIfExists('emails');
     }
 }
